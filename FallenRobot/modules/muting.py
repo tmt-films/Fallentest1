@@ -240,14 +240,14 @@ def temp_mute(update: Update, context: CallbackContext) -> str:
 __help__ = """
 *ᴀᴅᴍɪɴs ᴏɴʟʏ:*
 
- ❍ /mute <userhandle>*:* silences a user. Can also be used as a reply, muting the replied to user.
- ❍ /tmute <userhandle> x(m/h/d)*:* mutes a user for x time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
- ❍ /unmute <userhandle>*:* unmutes a user. Can also be used as a reply, muting the replied to user.
+ ❍ /mute or /m <userhandle>*:* silences a user. Can also be used as a reply, muting the replied to user.
+ ❍ /tmute or /tempmute or /tm <userhandle> x(m/h/d)*:* mutes a user for x time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
+ ❍ /unmute or /um <userhandle>*:* unmutes a user. Can also be used as a reply, muting the replied to user.
 """
 
-MUTE_HANDLER = CommandHandler("mute", mute, run_async=True)
-UNMUTE_HANDLER = CommandHandler("unmute", unmute, run_async=True)
-TEMPMUTE_HANDLER = CommandHandler(["tmute", "tempmute"], temp_mute, run_async=True)
+MUTE_HANDLER = CommandHandler(["mute", "m"], mute, run_async=True)
+UNMUTE_HANDLER = CommandHandler(["unmute", "um"], unmute, run_async=True)
+TEMPMUTE_HANDLER = CommandHandler(["tmute", "tempmute", "tm"], temp_mute, run_async=True)
 
 dispatcher.add_handler(MUTE_HANDLER)
 dispatcher.add_handler(UNMUTE_HANDLER)

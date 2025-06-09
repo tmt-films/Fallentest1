@@ -888,13 +888,13 @@ __help__ = """
 » /pinned*:* to get the current pinned message.
 
 *The Following Commands are Admins only:* 
-» /pin*:* silently pins the message replied to - add `'loud'` or `'notify'` to give notifs to users
-» /unpin*:* unpins the currently pinned message
+» /pin or /pinmsg*:* silently pins the message replied to - add `'loud'` or `'notify'` to give notifs to users
+» /unpin or /unpinmsg*:* unpins the currently pinned message
 » /invitelink*:* gets invitelink
-» /promote*:* promotes the user replied to
+» /promote or /p*:* promotes the user replied to
 » /lowpromote*:* promotes the user replied to with half rights
 » /fullpromote*:* promotes the user replied to with full rights
-» /demote*:* demotes the user replied to
+» /demote or /d*:* demotes the user replied to
 » /title <title here>*:* sets a custom title for an admin that the bot promoted
 » /admincache*:* force refresh the admins list
 » /del*:* deletes the message you replied to
@@ -916,20 +916,20 @@ ADMINLIST_HANDLER = DisableAbleCommandHandler(
     ["admins", "staff"], adminlist, run_async=True
 )
 
-PIN_HANDLER = CommandHandler("pin", pin, run_async=True)
-UNPIN_HANDLER = CommandHandler("unpin", unpin, run_async=True)
+PIN_HANDLER = CommandHandler(["pin", "pinmsg"], pin, run_async=True)
+UNPIN_HANDLER = CommandHandler(["unpin", "unpinmsg"], unpin, run_async=True)
 PINNED_HANDLER = CommandHandler("pinned", pinned, run_async=True)
 
 INVITE_HANDLER = DisableAbleCommandHandler("invitelink", invite, run_async=True)
 
-PROMOTE_HANDLER = DisableAbleCommandHandler("promote", promote, run_async=True)
+PROMOTE_HANDLER = DisableAbleCommandHandler(["promote", "p"], promote, run_async=True)
 FULLPROMOTE_HANDLER = DisableAbleCommandHandler(
     "fullpromote", fullpromote, run_async=True
 )
 LOW_PROMOTE_HANDLER = DisableAbleCommandHandler(
     "lowpromote", lowpromote, run_async=True
 )
-DEMOTE_HANDLER = DisableAbleCommandHandler("demote", demote, run_async=True)
+DEMOTE_HANDLER = DisableAbleCommandHandler(["demote", "d"], demote, run_async=True)
 
 SET_TITLE_HANDLER = CommandHandler("title", set_title, run_async=True)
 ADMIN_REFRESH_HANDLER = CommandHandler(
@@ -957,14 +957,16 @@ dispatcher.add_handler(ADMIN_REFRESH_HANDLER)
 
 __mod_name__ = "Aᴅᴍɪɴs"
 __command_list__ = [
-    "setdesc" "setsticker" "setgpic" "delgpic" "setgtitle" "adminlist",
+    "setdesc", "setsticker", "setgpic", "delgpic", "setgtitle", "adminlist",
     "admins",
     "invitelink",
-    "promote",
+    "promote", "p",
     "fullpromote",
     "lowpromote",
-    "demote",
+    "demote", "d",
     "admincache",
+    "pin", "pinmsg",
+    "unpin", "unpinmsg",
 ]
 __handlers__ = [
     SET_DESC_HANDLER,

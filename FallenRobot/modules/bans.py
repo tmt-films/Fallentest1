@@ -398,17 +398,16 @@ __help__ = """
  ❍ /kickme*:* kicks the user who issued the command
 
 *Admins only:*
- ❍ /ban <userhandle>*:* bans a user. (via handle, or reply)
- ❍ /sban <userhandle>*:* Silently ban a user. Deletes command, Replied message and doesn't reply. (via handle, or reply)
- ❍ /tban <userhandle> x(m/h/d)*:* bans a user for `x` time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
- ❍ /unban <userhandle>*:* unbans a user. (via handle, or reply)
- ❍ /kick <userhandle>*:* kicks a user out of the group, (via handle, or reply)
+ ❍ /ban or /sban or /b <userhandle>*:* bans a user. (via handle, or reply). Use /sban for silent ban.
+ ❍ /tban or /tb <userhandle> x(m/h/d)*:* bans a user for `x` time. (via handle, or reply). `m` = `minutes`, `h` = `hours`, `d` = `days`.
+ ❍ /unban or /ub <userhandle>*:* unbans a user. (via handle, or reply)
+ ❍ /kick or /k <userhandle>*:* kicks a user out of the group, (via handle, or reply)
 """
 
-BAN_HANDLER = CommandHandler(["ban", "sban"], ban, run_async=True)
-TEMPBAN_HANDLER = CommandHandler(["tban"], temp_ban, run_async=True)
-KICK_HANDLER = CommandHandler("kick", kick, run_async=True)
-UNBAN_HANDLER = CommandHandler("unban", unban, run_async=True)
+BAN_HANDLER = CommandHandler(["ban", "sban", "b"], ban, run_async=True)
+TEMPBAN_HANDLER = CommandHandler(["tban", "tb"], temp_ban, run_async=True)
+KICK_HANDLER = CommandHandler(["kick", "k"], kick, run_async=True)
+UNBAN_HANDLER = CommandHandler(["unban", "ub"], unban, run_async=True)
 ROAR_HANDLER = CommandHandler("roar", selfunban, run_async=True)
 KICKME_HANDLER = DisableAbleCommandHandler(
     "kickme", kickme, filters=Filters.chat_type.groups, run_async=True
